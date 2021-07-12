@@ -4,8 +4,6 @@
 let secretNumber = Math.trunc(Math.random() * 100) + 1;
 let score = 100;
 let highscore = 0;
-//TODO remove before deployment
-document.querySelector('.number').textContent = secretNumber;
 const validateScore = function (score) {
 	if (score > 5) {
 		return true;
