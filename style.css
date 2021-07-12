@@ -110,9 +110,139 @@ h1
 {
 	margin-bottom: 8rem;
 	height: 3rem;
-}
-      
+}     
 .label-score
 {
 	margin-bottom: 2rem;
+}
+/* responsiveness */
+@media only screen and (max-width: 300px)
+{
+	html{
+		font-size:20%;
+	}
+	.guess
+	{
+		width: 50%;
+	}
+	main{
+		flex-direction: column-reverse;
+		justify-content:space-evenly;
+	}
+	.right
+	{
+		width: 60%;
+		font-size: 2.4rem;
+	}
+	h1
+	{
+		font-size: 4.9rem;
+		width: 100%;
+		top: 52%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+	}
+	.between
+	{
+		font-size: 2rem;
+		max-width: 19rem;
+        }
+}
+
+@media only screen and (min-width:300px)
+{
+	html{
+		font-size:30%;
+	}
+	.guess
+	{
+		width: 55%;
+	}
+	main{
+		flex-direction: column-reverse;
+		justify-content:space-evenly;
+	}
+	.right
+	{
+		width: 50%;
+		font-size: 2.4rem;
+	}
+	h1
+	{
+		font-size: 3.7rem;
+		width: 100%;
+	}
+	.between
+	{
+		font-size: 2.2rem;
+		max-width: 25rem;
+        }
+	
+}
+@media only screen and (min-width: 768px)
+{	html
+	{
+		font-size: 30%;
+	}
+	.guess
+	{
+		width: 55%;
+	}
+	main{
+		flex-direction: row;
+		justify-content:space-around;
+	}
+	.right
+	{
+		width: 50%;
+		font-size: 2.7rem;
+	}
+	h1
+	{
+		font-size: 5.2rem;
+		width: 100%;
+	}
+	.between
+	{
+		font-size: 2.5rem;
+		max-width: 55rem;
+        }
+}
+@media only screen and (min-width: 992px)
+{
+	html
+	{
+		font-size: 40%;
+	}
+	.guess
+	{
+		width: 60%;
+	}	
+	.right
+	{
+		width: 50%;
+		font-size: 3rem;
+	}
+	h1
+	{
+		font-size: 5.5rem;
+		width: 100%;
+	}
+	.between
+	{
+		font-size: 2.4rem;
+		max-width: 50rem;
+        }
+}
+@media only screen and (min-width: 1200px)
+{
+	html
+	{
+		font-size: 50%;
+	}	
+	.between
+	{
+		font-size: 2rem;
+		max-width: 48rem;
+        }
 }
