@@ -2,12 +2,12 @@
 
 //Random no. between 1 and 100
 let secretNumber = Math.trunc(Math.random() * 100) + 1;
-//score
 let score = 100;
 let highscore = 0;
-
+//TODO remove before deployment
+document.querySelector('.number').textContent = secretNumber;
 const validateScore = function (score) {
-	if (score >= 5) {
+	if (score > 5) {
 		return true;
 	}
 	return false;
@@ -31,48 +31,82 @@ const resetGame = function () {
 	document.querySelector('.guess').value = "";
 }
 
+const validateGuess = function (guess) {
+	let isValid = true;
+	if (typeof guess !== 'number') {
+		isValid = false;
+	}
+	return isValid;
+}
+
 const checkNumber = function () {
+
 	const guess = Number(document.querySelector('.guess').value);
 	let message = document.querySelector('.message');
 	const scoreElement = document.querySelector('.score');
 
-	if (!guess) {
-		message.textContent = '😢 No Number!';
+	if (validateGuess(guess)) {
+		if (guess > 100 || guess < 1) {
+			message.textContent = '🔢 Between 1 and 100! Only';
+			return;
+		}
 	}
-	else if (guess === secretNumber) {
+	else {
+		message.textContent = '😢 No Number!';
+		return;
+	}
+	if (guess === secretNumber) {
 		message.textContent = '🎉 Correct Number!';
 		document.querySelector('.number').textContent = secretNumber;
 		document.querySelector('body').style.backgroundColor = '#60b347'
 		document.querySelector('.number').style.width = '30rem';
 		setHighscore(score);
-
-
 	}
 	else if (guess > secretNumber) {
 		if (validateScore(score)) {
-			message.textContent = '📈 Too High!';
 			score -= 5;
 			scoreElement.textContent = score;
 		}
 		else {
+			score = 0;
 			scoreElement.textContent = score;
-			message.textContent = '😔 Game Over'
+			message.textContent = '😔 Game Over';
+			return;
+		}
+		if ((5 <= Math.abs(guess - secretNumber) && Math.abs(guess - secretNumber) < 10)) {
+			message.textContent = 'High!';
+		}
+		else if (1 <= Math.abs(guess - secretNumber) && Math.abs(guess - secretNumber) < 5) {
+			message.textContent = '😍 Close Enough!';
+		}
+		else if (Math.abs(guess - secretNumber) >= 10) {
+			message.textContent = '📈 Too High!';
 		}
 
 	}
 	else if (guess < secretNumber) {
 		if (validateScore(score)) {
-			message.textContent = '📉 Too Low!';
 			score -= 5;
 			scoreElement.textContent = score;
 		}
 		else {
+			score = 0;
+			message.textContent = '😔 Game Over';
 			scoreElement.textContent = score;
-			message.textContent = '😔 Game Over'
+			return;
+		}
+		if ((5 <= Math.abs(guess - secretNumber) && Math.abs(guess - secretNumber) < 10)) {
+			message.textContent = 'Low!';
+		}
+		else if (1 <= Math.abs(guess - secretNumber) && Math.abs(guess - secretNumber) < 5) {
+			message.textContent = '😍 Close Enough!';
+		}
+		else if (Math.abs(guess - secretNumber) >= 10) {
+			message.textContent = '📉 Too Low!';
 		}
 
 	}
-}
 
+}
 document.querySelector('.check').addEventListener('click', checkNumber);
 document.querySelector('.again').addEventListener('click', resetGame);
