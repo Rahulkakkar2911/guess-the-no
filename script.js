@@ -1,5 +1,4 @@
 'use strict';
-
 //Random no. between 1 and 100
 let secretNumber = Math.trunc(Math.random() * 100) + 1;
 let score = 100;
@@ -30,7 +29,7 @@ const resetGame = function () {
 }
 const checkNumber = function () {
 
-	let guess = document.querySelector('.guess').value;
+	let guess = Number(document.querySelector('.guess').value);
 	let message = document.querySelector('.message');
 	const scoreElement = document.querySelector('.score');
 
@@ -40,11 +39,11 @@ const checkNumber = function () {
 		return;
 	}
 	else if (guess > 100 || guess < 1) {
-		guess = Number(guess);
 		message.textContent = '🔢 Between 1 and 100! Only';
 		return;
 	}
-	if (guess === secretNumber) {
+	else if (guess === secretNumber) {
+
 		message.textContent = '🎉 Correct Number!';
 		document.querySelector('.number').textContent = secretNumber;
 		document.querySelector('body').style.backgroundColor = '#60b347'
