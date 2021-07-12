@@ -4,8 +4,6 @@
 let secretNumber = Math.trunc(Math.random() * 100) + 1;
 let score = 100;
 let highscore = 0;
-//TODO remove before deployment
-document.querySelector('.number').textContent = secretNumber;
 const validateScore = function (score) {
 	if (score > 5) {
 		return true;
@@ -30,29 +28,20 @@ const resetGame = function () {
 	document.querySelector('.number').style.width = '15rem';
 	document.querySelector('.guess').value = "";
 }
-
-const validateGuess = function (guess) {
-	let isValid = true;
-	if (typeof guess !== 'number') {
-		isValid = false;
-	}
-	return isValid;
-}
-
 const checkNumber = function () {
 
-	const guess = Number(document.querySelector('.guess').value);
+	let guess = document.querySelector('.guess').value;
 	let message = document.querySelector('.message');
 	const scoreElement = document.querySelector('.score');
 
-	if (validateGuess(guess)) {
-		if (guess > 100 || guess < 1) {
-			message.textContent = '🔢 Between 1 and 100! Only';
-			return;
-		}
+
+	if (guess === '') {
+		message.textContent = '😢 Not a Number';
+		return;
 	}
-	else {
-		message.textContent = '😢 No Number!';
+	else if (guess > 100 || guess < 1) {
+		guess = Number(guess);
+		message.textContent = '🔢 Between 1 and 100! Only';
 		return;
 	}
 	if (guess === secretNumber) {
